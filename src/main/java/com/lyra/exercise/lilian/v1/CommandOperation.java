@@ -7,55 +7,60 @@ public class CommandOperation {
 
 
 	public String process(String cmd, PitchGrid pitchgrid) throws Exception {
-         if("M".equalsIgnoreCase(cmd)) {
-			
-			if(this.currentdirection == Direction.North) {
-				this.yPos = this.yPos + 1;
-			}else if (this.currentdirection == Direction.South) {
-				this.yPos  = this.yPos -1;
-			}else if (this.currentdirection == Direction.East) {
-				this.xPos = this.xPos + 1;
-			}else if (this.currentdirection == Direction.West) {
-				this.xPos = this.xPos -1;
-			}
-			
-			if(pitchgrid.outofPitchBound(this.xPos, this.yPos)) {
-				throw new Exception("out of pitch");
-			}
-		}
+        
+//		if("M".equalsIgnoreCase(cmd)) {
+//			move(pitchgrid);
+//		}
+//		
+//		
+//		if("L".equalsIgnoreCase(cmd)) {
+//			turnLeft();
+//		}
+//		
+// 		
+//		if("R".equalsIgnoreCase(cmd)) {
+//			turnRight();
+//		}
 		
-		
-		if("L".equalsIgnoreCase(cmd)) {
-			if(this.currentdirection == Direction.North) {
-				this.currentdirection = Direction.West;
- 			}else if (this.currentdirection == Direction.South) {
- 				this.currentdirection = Direction.East;
- 			}else if (this.currentdirection == Direction.East) {
- 				this.currentdirection = Direction.North;
- 			}else if (this.currentdirection == Direction.West) {
- 				this.currentdirection = Direction.South;
- 			}
-		}
-		
- 		
-		if("R".equalsIgnoreCase(cmd)) {
-			if(this.currentdirection == Direction.North) {
-				this.currentdirection = Direction.East;
- 			}else if (this.currentdirection == Direction.South) {
- 				this.currentdirection = Direction.West;
- 			}else if (this.currentdirection == Direction.East) {
- 				this.currentdirection = Direction.South;
- 			}else if (this.currentdirection == Direction.West) {
- 				this.currentdirection = Direction.North;
- 			}
+		switch (cmd) {
+			case "M": move(pitchgrid); break;
+			case "L": turnLeft();break;
+			case "R": turnRight(); break;
+			default:break;
+		 
 		}
 		
 		
 		return this.xPos + " "+ this.yPos;
 		
+	}
+
+
+	private void turnRight() {
+		this.currentdirection = this.currentdirection.turnRight();
+	}
+
+
+	private void turnLeft() {
+		this.currentdirection = this.currentdirection.turnLeft();
+
+	}
+
+
+	private void move(PitchGrid pitchgrid) throws Exception {
+		if(this.currentdirection == Direction.North) {
+			this.yPos = this.yPos + 1;
+		}else if (this.currentdirection == Direction.South) {
+			this.yPos  = this.yPos -1;
+		}else if (this.currentdirection == Direction.East) {
+			this.xPos = this.xPos + 1;
+		}else if (this.currentdirection == Direction.West) {
+			this.xPos = this.xPos -1;
+		}
 		
-		
-		
+		if(pitchgrid.outofPitchBound(this.xPos, this.yPos)) {
+			throw new Exception("out of pitch");
+		}
 	}
 
 
