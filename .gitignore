@@ -25,3 +25,8 @@ hs_err_pid*
 not_commit_file.txt
 target/
 
+.settings
+.project
+.classpath
+
+
