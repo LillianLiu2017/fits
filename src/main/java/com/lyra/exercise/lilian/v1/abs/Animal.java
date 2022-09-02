@@ -1,13 +1,11 @@
 package com.lyra.exercise.lilian.v1.abs;
 
-public   class Animal {
+public abstract class Animal {
 	
-	public   void move() {
-		System.out.println("animal move");
-	}
+	public abstract void move();
 	
 	public void go() {
-		System.out.println("animal go");
+		System.out.println("go");
 	}
 
 	public Animal() {
