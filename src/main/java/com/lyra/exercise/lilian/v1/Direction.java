@@ -1,6 +1,6 @@
 package com.lyra.exercise.lilian.v1;
 
-public enum Direction implements ITurnable {
+public enum Direction implements ITurnable, IMoveable {
 	North {
 
 		@Override
@@ -12,6 +12,11 @@ public enum Direction implements ITurnable {
 		public Direction turnRight() {
 			// TODO Auto-generated method stub
 			return Direction.East;
+		}
+
+		@Override
+		public Position move(Position position) {
+			return new Position(position.getX(), position.getY() + 1);
 		}
 		
 	},
@@ -28,6 +33,11 @@ public enum Direction implements ITurnable {
 			// TODO Auto-generated method stub
 			return Direction.West;
 		}
+
+		@Override
+		public Position move(Position position) {
+			return new Position(position.getX(), position.getY() -1);
+		}
 		
 	},
 	
@@ -43,6 +53,11 @@ public enum Direction implements ITurnable {
 			// TODO Auto-generated method stub
 			return Direction.North;
 		}
+
+		@Override
+		public Position move(Position position) {
+			return new Position(position.getX() -1, position.getY());
+		}
 		
 	},
 	East{
@@ -56,6 +71,11 @@ public enum Direction implements ITurnable {
 		public Direction turnRight() {
 			// TODO Auto-generated method stub
 			return Direction.South;
+		}
+
+		@Override
+		public Position move(Position position) {
+			return new Position(position.getX() + 1, position.getY());
 		}
 		
 	};

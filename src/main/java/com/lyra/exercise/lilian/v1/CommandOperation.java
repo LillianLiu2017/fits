@@ -48,15 +48,19 @@ public class CommandOperation {
 
 
 	private void move(PitchGrid pitchgrid) throws Exception {
-		if(this.currentdirection == Direction.North) {
-			this.yPos = this.yPos + 1;
-		}else if (this.currentdirection == Direction.South) {
-			this.yPos  = this.yPos -1;
-		}else if (this.currentdirection == Direction.East) {
-			this.xPos = this.xPos + 1;
-		}else if (this.currentdirection == Direction.West) {
-			this.xPos = this.xPos -1;
-		}
+//		if(this.currentdirection == Direction.North) {
+//			this.yPos = this.yPos + 1;
+//		}else if (this.currentdirection == Direction.South) {
+//			this.yPos  = this.yPos -1;
+//		}else if (this.currentdirection == Direction.East) {
+//			this.xPos = this.xPos + 1;
+//		}else if (this.currentdirection == Direction.West) {
+//			this.xPos = this.xPos -1;
+//		}
+		
+		Position p = this.currentdirection.move(new Position(this.xPos, this.yPos));
+		this.xPos = p.getX();
+		this.yPos = p.getY();
 		
 		if(pitchgrid.outofPitchBound(this.xPos, this.yPos)) {
 			throw new Exception("out of pitch");
